@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced Star Pattern Animations with Layout Patterns</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Advanced Star Pattern Animations</h1>
+      <p>Pure JavaScript animations with advanced visual effects and layout patterns</p>
+    </header>
+
+    <div class="controls">
+      <div class="control-group">
+        <label for="pattern-select">Animation Pattern:</label>
+        <select id="pattern-select">
+          <option value="morphing">Morphing Shapes</option>
+          <option value="pyramid3d">3D Rotating Pyramid</option>
+          <option value="waves">Wave Interference</option>
+          <option value="matrix">Matrix Digital Rain</option>
+          <option value="explosion">Particle Explosion</option>
+          <option value="spiral">Spiral Galaxy</option>
+          <option value="textPattern">ASCII Star Patterns</option>
+          <option value="trianglePatterns">Triangle Star Patterns</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label for="layout-select">Layout Pattern:</label>
+        <select id="layout-select">
+          <option value="grid">Grid Layout</option>
+          <option value="circular">Circular Layout</option>
+          <option value="hexagonal">Hexagonal Layout</option>
+          <option value="fractal">Fractal Layout</option>
+          <option value="mandala">Mandala Layout</option>
+          <option value="tessellation">Tessellation Layout</option>
+          <option value="scatter">Random Scatter</option>
+          <option value="flowField">Flow Field Layout</option>
+          <option value="fibonacci">Fibonacci Spiral</option>
+          <option value="voronoi">Voronoi Diagram</option>
+          <option value="triangular">Triangular Layout</option>
+          <option value="pyramid">Pyramid Layout</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label for="star-pattern-select">Star Pattern Type:</label>
+        <select id="star-pattern-select">
+          <option value="rightTriangle">Right Triangle</option>
+          <option value="leftTriangle">Left Triangle</option>
+          <option value="pyramid">Pyramid</option>
+          <option value="diamond">Diamond</option>
+          <option value="hollowSquare">Hollow Square</option>
+          <option value="reverseRightTriangle">Reverse Right Triangle</option>
+          <option value="reverseLeftTriangle">Reverse Left Triangle</option>
+          <option value="leftHalfPyramid">Left Half Pyramid</option>
+          <option value="rightHalfPyramid">Right Half Pyramid</option>
+          <option value="hollowTriangle">Hollow Triangle</option>
+          <option value="doubleTriangle">Double Triangle</option>
+          <option value="zigzagTriangle">Zigzag Triangle</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <button id="play-pause">Pause</button>
+        <button id="reset">Reset</button>
+        <button id="randomize">Randomize</button>
+      </div>
+
+      <div class="control-group">
+        <label for="speed-slider">Speed:</label>
+        <input type="range" id="speed-slider" min="10" max="200" value="50" step="10">
+        <span id="speed-value">50%</span>
+      </div>
+
+      <div class="control-group">
+        <label for="density-slider">Density:</label>
+        <input type="range" id="density-slider" min="20" max="200" value="100" step="10">
+        <span id="density-value">100%</span>
+      </div>
+
+      <div class="control-group">
+        <label for="size-slider">Pattern Size:</label>
+        <input type="range" id="size-slider" min="5" max="15" value="8" step="1">
+        <span id="size-value">8</span>
+      </div>
+    </div>
+
+    <div class="canvas-container">
+      <canvas id="animation-canvas"></canvas>
+    </div>
+
+    <div class="text-container">
+      <pre id="text-output"></pre>
+    </div>
+
+    <div class="pattern-showcase">
+      <h2>Star Pattern Examples</h2>
+      <div class="pattern-grid">
+        <div class="pattern-example" data-pattern="rightTriangle">
+          <div class="pattern-preview">
+★<br>
+★★<br>
+★★★<br>
+★★★★<br>
+★★★★★
+          </div>
+          <h3>Right Triangle</h3>
+          <p>Stars increase from left to right</p>
+        </div>
+        
+        <div class="pattern-example" data-pattern="leftTriangle">
+          <div class="pattern-preview">
+&nbsp;&nbsp;&nbsp;&nbsp;★<br>
+&nbsp;&nbsp;&nbsp;★★<br>
+&nbsp;&nbsp;★★★<br>
+&nbsp;★★★★<br>
+★★★★★
+          </div>
+          <h3>Left Triangle</h3>
+          <p>Stars increase from right to left</p>
+        </div>
+
+        <div class="pattern-example" data-pattern="reverseRightTriangle">
+          <div class="pattern-preview">
+★★★★★<br>
+★★★★<br>
+★★★<br>
+★★<br>
+★
+          </div>
+          <h3>Reverse Right Triangle</h3>
+          <p>Inverted right triangle pattern</p>
+        </div>
+
+        <div class="pattern-example" data-pattern="reverseLeftTriangle">
+          <div class="pattern-preview">
+★★★★★<br>
+&nbsp;★★★★<br>
+&nbsp;&nbsp;★★★<br>
+&nbsp;&nbsp;&nbsp;★★<br>
+&nbsp;&nbsp;&nbsp;&nbsp;★
+          </div>
+          <h3>Reverse Left Triangle</h3>
+          <p>Inverted left triangle pattern</p>
+        </div>
+
+        <div class="pattern-example" data-pattern="leftHalfPyramid">
+          <div class="pattern-preview">
+&nbsp;&nbsp;&nbsp;&nbsp;★<br>
+&nbsp;&nbsp;&nbsp;★★<br>
+&nbsp;&nbsp;★★★<br>
+&nbsp;★★★★<br>
+★★★★★
+          </div>
+          <h3>Left Half Pyramid</h3>
+          <p>Half pyramid aligned to left</p>
+        </div>
+
+        <div class="pattern-example" data-pattern="rightHalfPyramid">
+          <div class="pattern-preview">
+★<br>
+★★<br>
+★★★<br>
+★★★★<br>
+★★★★★
+          </div>
+          <h3>Right Half Pyramid</h3>
+          <p>Half pyramid aligned to right</p>
+        </div>
+
+        <div class="pattern-example" data-pattern="pyramid">
+          <div class="pattern-preview">
+&nbsp;&nbsp;★<br>
+&nbsp;★★★<br>
+★★★★★
+          </div>
+          <h3>Pyramid</h3>
+          <p>Centered pyramid pattern</p>
+        </div>
+
+        <div class="pattern-example" data-pattern="diamond">
+          <div class="pattern-preview">
+&nbsp;&nbsp;★<br>
+&nbsp;★★★<br>
+★★★★★<br>
+&nbsp;★★★<br>
+&nbsp;&nbsp;★
+          </div>
+          <h3>Diamond</h3>
+          <p>Diamond shape pattern</p>
+        </div>
+
+        <div class="pattern-example" data-pattern="hollowTriangle">
+          <div class="pattern-preview">
+&nbsp;&nbsp;★<br>
+&nbsp;★&nbsp;★<br>
+★★★★★
+          </div>
+          <h3>Hollow Triangle</h3>
+          <p>Triangle with hollow center</p>
+        </div>
+
+        <div class="pattern-example" data-pattern="doubleTriangle">
+          <div class="pattern-preview">
+&nbsp;&nbsp;★<br>
+&nbsp;★★★<br>
+★★★★★<br>
+★★★★★<br>
+&nbsp;★★★<br>
+&nbsp;&nbsp;★
+          </div>
+          <h3>Double Triangle</h3>
+          <p>Two triangles combined</p>
+        </div>
+
+        <div class="pattern-example" data-pattern="zigzagTriangle">
+          <div class="pattern-preview">
+★&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;★★&nbsp;&nbsp;<br>
+&nbsp;&nbsp;★★★<br>
+&nbsp;★★&nbsp;&nbsp;<br>
+★&nbsp;&nbsp;&nbsp;&nbsp;
+          </div>
+          <h3>Zigzag Triangle</h3>
+          <p>Zigzag pattern triangle</p>
+        </div>
+
+        <div class="pattern-example" data-pattern="hollowSquare">
+          <div class="pattern-preview">
+★★★★★<br>
+★&nbsp;&nbsp;&nbsp;★<br>
+★&nbsp;&nbsp;&nbsp;★<br>
+★&nbsp;&nbsp;&nbsp;★<br>
+★★★★★
+          </div>
+          <h3>Hollow Square</h3>
+          <p>Square with hollow center</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="layout-showcase">
+      <h2>Layout Pattern Examples</h2>
+      <div class="layout-grid">
+        <div class="layout-example" data-layout="grid">
+          <canvas class="preview-canvas" width="150" height="150"></canvas>
+          <h3>Grid Layout</h3>
+          <p>Regular grid arrangement with customizable spacing</p>
+        </div>
+        <div class="layout-example" data-layout="circular">
+          <canvas class="preview-canvas" width="150" height="150"></canvas>
+          <h3>Circular Layout</h3>
+          <p>Concentric circles with radial symmetry</p>
+        </div>
+        <div class="layout-example" data-layout="hexagonal">
+          <canvas class="preview-canvas" width="150" height="150"></canvas>
+          <h3>Hexagonal Layout</h3>
+          <p>Honeycomb pattern with hexagonal tiling</p>
+        </div>
+        <div class="layout-example" data-layout="fractal">
+          <canvas class="preview-canvas" width="150" height="150"></canvas>
+          <h3>Fractal Layout</h3>
+          <p>Self-similar recursive patterns</p>
+        </div>
+        <div class="layout-example" data-layout="mandala">
+          <canvas class="preview-canvas" width="150" height="150"></canvas>
+          <h3>Mandala Layout</h3>
+          <p>Sacred geometry with rotational symmetry</p>
+        </div>
+        <div class="layout-example" data-layout="tessellation">
+          <canvas class="preview-canvas" width="150" height="150"></canvas>
+          <h3>Tessellation Layout</h3>
+          <p>Interlocking geometric shapes</p>
+        </div>
+        <div class="layout-example" data-layout="scatter">
+          <canvas class="preview-canvas" width="150" height="150"></canvas>
+          <h3>Random Scatter</h3>
+          <p>Organic random distribution patterns</p>
+        </div>
+        <div class="layout-example" data-layout="flowField">
+          <canvas class="preview-canvas" width="150" height="150"></canvas>
+          <h3>Flow Field</h3>
+          <p>Fluid dynamics inspired layouts</p>
+        </div>
+        <div class="layout-example" data-layout="fibonacci">
+          <canvas class="preview-canvas" width="150" height="150"></canvas>
+          <h3>Fibonacci Spiral</h3>
+          <p>Golden ratio based natural spirals</p>
+        </div>
+        <div class="layout-example" data-layout="voronoi">
+          <canvas class="preview-canvas" width="150" height="150"></canvas>
+          <h3>Voronoi Diagram</h3>
+          <p>Cellular division patterns</p>
+        </div>
+        <div class="layout-example" data-layout="triangular">
+          <canvas class="preview-canvas" width="150" height="150"></canvas>
+          <h3>Triangular Layout</h3>
+          <p>Triangular grid arrangement</p>
+        </div>
+        <div class="layout-example" data-layout="pyramid">
+          <canvas class="preview-canvas" width="150" height="150"></canvas>
+          <h3>Pyramid Layout</h3>
+          <p>Pyramid-shaped arrangement</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <h2>Animation & Layout Techniques</h2>
+      <div class="techniques-grid">
+        <div class="technique">
+          <h3>3D Transformations</h3>
+          <ul>
+            <li>Matrix rotations</li>
+            <li>Perspective projection</li>
+            <li>Depth-based scaling</li>
+            <li>Real-time 3D rendering</li>
+          </ul>
+        </div>
+        <div class="technique">
+          <h3>Particle Systems</h3>
+          <ul>
+            <li>Physics simulation</li>
+            <li>Collision detection</li>
+            <li>Life cycle management</li>
+            <li>Dynamic spawning</li>
+          </ul>
+        </div>
+        <div class="technique">
+          <h3>Layout Algorithms</h3>
+          <ul>
+            <li>Grid positioning</li>
+            <li>Polar coordinates</li>
+            <li>Fractal recursion</li>
+            <li>Voronoi tessellation</li>
+          </ul>
+        </div>
+        <div class="technique">
+          <h3>Star Pattern Types</h3>
+          <ul>
+            <li>Triangle variations</li>
+            <li>Pyramid patterns</li>
+            <li>Hollow shapes</li>
+            <li>Reverse patterns</li>
+          </ul>
+        </div>
+        <div class="technique">
+          <h3>Color Dynamics</h3>
+          <ul>
+            <li>HSL color spaces</li>
+            <li>Gradient generation</li>
+            <li>Alpha blending</li>
+            <li>Color cycling</li>
+          </ul>
+        </div>
+        <div class="technique">
+          <h3>Performance</h3>
+          <ul>
+            <li>RequestAnimationFrame</li>
+            <li>Canvas optimization</li>
+            <li>Memory management</li>
+            <li>Efficient rendering</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
